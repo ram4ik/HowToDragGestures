@@ -9,8 +9,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var toggleMe: Bool = false
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            if toggleMe == false {
+                Text("Drag the screen to any direction")
+                    .frame(width: 300, height: 300)
+                    .foregroundColor(Color.red)
+                    .background(Color.black)
+            } else {
+                Text("😀").font(.largeTitle)
+            }
+        }.gesture(DragGesture().onEnded({ (value) in
+            self.toggleMe.toggle()
+        }))
     }
 }
 
